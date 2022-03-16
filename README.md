@@ -3,12 +3,15 @@
 Note: For deploying this application, we have two way:
 
 * Manual
+<img src="https://github.com/hackcoderr/images/blob/master/manual.png" hieght="50px">
+
 * Automated
+
 If you want manual setup to deploy this application then go on your AWS Console and launch EC2 Instance, After it,  Install Apache Websever server on ec2-instance and configure it. but you want some automation then follow second way.
 
 
 ## Terraform and AWS CLI Installation
-**Tested** Only on RHEL/Centos
+**Tested**: Only on RHEL/Centos
 
 Install and configure terraform and AWS CLI through script.
 
