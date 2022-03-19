@@ -1,37 +1,41 @@
-## Welcome to GitHub Pages
+# CRUD Web Application 
 
-You can use the [editor on GitHub](https://github.com/hackcoderr/crud-app/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Note: For deploying this application, we have two way:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1. Manual
+<img src="https://github.com/hackcoderr/images/blob/master/manual.png" hieght="50px">
 
-### Markdown
+2. Automated
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+If you want manual setup to deploy this application then go on your AWS Console and launch EC2 Instance, After it,  Install Apache Websever server on ec2-instance and configure it. but you want some automation then follow second way.
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+## Terraform and AWS CLI Installation
+**Tested**: Only on RHEL/Centos
 
-- Bulleted
-- List
+Install and configure terraform and AWS CLI through script.
 
-1. Numbered
-2. List
+```
+chmod +x bash/terra-aws-setup.sh
+./bash/terra-aws-setup.sh
 
-**Bold** and _Italic_ and `Code` text
+```
+## Provisioning AWS resources
+Provision AWS Resources like EC2 instance VPC component etc which we will have need to deploy this application.
 
-[Link](url) and ![Image](src)
+1. Create [IAM User](https://www.techtarget.com/searchcloudcomputing/tutorial/Step-by-step-guide-on-how-to-create-an-IAM-user-in-AWS) for getting accees and secret key which we will use to estabish the connection b/w terraform and AWS Account.
+
+2. Run the below command to set your aws profile which we will use in terraform code so give your access and secret key after running this command.
+
+```
+aws configure --profile <profile-name>
+# aws configure --profile hackcoderr
+```
+3. Go inside ``./terraform`` folder and run the below commands to get required AWS resources.
+
+```
+cd terraform/
+terraform init
+terraform apply --auto-approve
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hackcoderr/crud-app/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
