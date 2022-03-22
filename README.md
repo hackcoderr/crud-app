@@ -39,3 +39,7 @@ terraform init
 terraform apply --auto-approve
 ```
 
+## Configuration through Ansible
+First, Install [Ansible server](https://hackcoderr.github.io/ansible-setup/) then configure Docker and Jenkins server through Ansible.
+
+
