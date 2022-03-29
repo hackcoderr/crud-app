@@ -1,27 +1,27 @@
 pipeline {
-    environment { 
-        registry = "hackcoderr/crud-app" 
-        registryCredential = 'docker-cred' 
-        dockerImage = '' 
+    environment {
+        registry = "hackcoderr/crud-app:latest" 
+        registryCredential = 'docker-cred'
+        dockerImage = ''
     }
     agent{
         label 'docker-swarm-node-1'
     }
 
     stages {
-        stage('clone repo') {
+        stage('SCM') {
             steps {
                 git 'https://github.com/hackcoderr/jenkins-test.git'
             }
         }
-        stage('build image') { 
+        stage('Build image') { 
             steps { 
                 script { 
-                    dockerImage = docker.build registry + ":latest" 
+                    dockerImage = docker.build registry  
                 }
             } 
         }
-        stage('deploy image') { 
+        stage('Deploy image') { 
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
@@ -29,17 +29,12 @@ pipeline {
                     }
                 } 
             }
-        } 
-        stage('clean up') { 
-            steps { 
-                sh "docker rmi $registry:$latest" 
-            }
-        } 
-         stage('docker-stack') {
+        }
+        stage('Docker stack') {
             steps {
                 sh 'docker stack deploy -c crud-stack.yaml crud-app'
             }
         }
-        
     }
 }
+
