@@ -1,0 +1,19 @@
+pipeline {
+    agent{
+        label 'docker-swarm-node-1'
+    }
+
+    stages {
+        stage('github-checkout') {
+            steps {
+                git 'https://github.com/hackcoderr/jenkins-test.git'
+            }
+        }
+         stage('docker-stack') {
+            steps {
+                sh 'docker stack deploy -c crud-stack.yaml crud-app'
+            }
+        }
+        
+    }
+}
