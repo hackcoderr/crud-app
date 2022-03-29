@@ -1,0 +1,6 @@
+version: "3.5"
+services:
+  curd-app:
+    image: ghcr.io/hackcoderr/crud-app:latest
+    ports:
+      - "8080:80"
