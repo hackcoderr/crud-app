@@ -1,45 +1,27 @@
-# CRUD Web Application
+![TruthSeekers Logo](https://truthseekers.io/wp-content/uploads/2021/05/ts-logo-dark-horizontal549x181.jpg)
 
-Note: For deploying this application, we have two way:
+## [Please support our YouTube channel by Subscribing!](https://www.youtube.com/channel/UCa0s8d-23qP7RmIMZ54x7Ug)
 
-* Manual
-<img src="https://github.com/hackcoderr/images/blob/master/manual.png" hieght="50px">
+## [Heal our planet AND progress society at the same time?](https://truthseekers.io/support-nuclear/)
 
-* Automated
+### Develop your skills with our high quality tutorials on:
 
-If you want manual setup to deploy this application then go on your AWS Console and launch EC2 Instance, After it,  Install Apache Websever server on ec2-instance and configure it. but you want some automation then follow second way.
+Linux, Docker & Kubernetes, React.js, GraphQL, SQL, Mongo, Emacs & more. Literally anything tech.
 
+## [Join our community by signing up for our newsletter!](https://truthseekers.io/latest-tutorials-signup/)
 
-## Terraform and AWS CLI Installation
-**Tested**: Only on RHEL/Centos
+Just cd into directory and run:
 
-Install and configure terraform and AWS CLI through script.
+docker-compose up -d
 
-```
-chmod +x bash/terra-aws-setup.sh
-./bash/terra-aws-setup.sh
+to stop:
 
-```
-## Provisioning AWS resources
-Provision AWS Resources like EC2 instance VPC component etc which we will have need to deploy this application.
+docker-compose down
 
-* Create [IAM User](https://www.techtarget.com/searchcloudcomputing/tutorial/Step-by-step-guide-on-how-to-create-an-IAM-user-in-AWS) for getting accees and secret key which we will use to estabish the connection b/w terraform and AWS Account.
+NOTE: In order for the app to work you will have to create a database named "company1", a "users" table with the columns "name" and "fav_color" in order for the errors to go away.
 
-* Run the below command to set your aws profile which we will use in terraform code so give your access and secret key after running this command.
+You can do this in localhost:8080  (adminer) with "root" as user, "example" as password.  "MySQL" selected for the system, and "db" as the server.
 
-```
-aws configure --profile <profile-name>
-# aws configure --profile hackcoderr
-```
-* Go inside ``./terraform`` folder and run the below commands to get required AWS resources.
+Then create the database & table and you should be able to see the php grab the users and display them.
 
-```
-cd terraform/
-terraform init
-terraform apply --auto-approve
-```
-
-## Configuration through Ansible
-First, Install [Ansible server](https://hackcoderr.github.io/ansible-setup/) then configure Docker and Jenkins server through Ansible.
-
-
+https://truthseekers.io/php-docker-simple-environment/ blog post.
