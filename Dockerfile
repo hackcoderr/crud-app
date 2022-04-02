@@ -1,9 +1,2 @@
-FROM ubuntu
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update
-RUN apt-get install apache2 -y
-RUN apt-get install apache2-utils -y
-RUN apt-get clean
-COPY web/*  /var/www/html/
-EXPOSE 80
-CMD ["apache2ctl","-D","FOREGROUND"]
+FROM php:7.4-apache
+RUN docker-php-ext-install mysqli
