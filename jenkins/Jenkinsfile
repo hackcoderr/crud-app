@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "hackcoderr/crud-app:latest" 
+        registry = "hackcoderr/php:latest" 
         registryCredential = 'docker-cred'
         dockerImage = ''
     }
@@ -14,14 +14,14 @@ pipeline {
                 git 'https://github.com/hackcoderr/crud-app.git'
             }
         }
-        stage('Build image') { 
+        stage('Build Image') { 
             steps { 
                 script { 
                     dockerImage = docker.build registry  
                 }
             } 
         }
-        stage('Deploy image') { 
+        stage('Push Image') { 
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
@@ -30,11 +30,10 @@ pipeline {
                 } 
             }
         }
-        stage('Docker stack') {
+        stage('Deployment') {
             steps {
-                sh 'docker stack deploy -c crud-stack.yaml crud-app'
+                sh 'docker-compose up -d'
             }
         }
     }
 }
-
