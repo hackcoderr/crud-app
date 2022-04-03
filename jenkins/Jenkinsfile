@@ -9,11 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('SCM') {
-            steps {
-                git 'https://github.com/hackcoderr/crud-app.git'
-            }
-        }
         stage('Build Image') { 
             steps { 
                 script { 
