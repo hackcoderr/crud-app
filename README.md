@@ -57,3 +57,50 @@ cd terraform/
 terraform init
 terraform apply --auto-approve
 ```
+## Ansible Installation
+**Tested on:**
+
+![RHEL](https://img.shields.io/badge/Red%20Hat-EE0000?style=for-the-badge&logo=redhat&logoColor=white)
+![centos](https://img.shields.io/badge/Cent%20OS-262577?style=for-the-badge&logo=CentOS&logoColor=white)
+![ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![amazon](https://img.shields.io/badge/Amazon_Linux-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+
+Run the below command to install and configure Ansible.
+```
+sudo yum install python3 git -y    
+git clone https://github.com/hackcoderr/ansible-setup.git
+cd ansible-setup/
+python3 script.py
+```
+For more information, Please go through [Ansible Setup Repository](https://hackcoderr.github.io/ansible-setup/).
+
+## Install Jenkins Server and Docker Swarm throgh Ansible
+Go inside ``./ansible/`` and run below ansible playbook to install and configure Jenkins and Docker Swarm according. 
+
+### Install Docker
+Path: ``./ansible/docker/``
+
+Before running playbook please changes your ``hosts`` according to your ``instance tag``.
+```
+- hosts: <instance_tag_name>
+eg:
+- hosts: tag_Name_DockerNode
+```
+Run the ansible playbook to install docker swarm.
+```
+ansible-playbook docker.yml
+```
+### Install Jenkins
+Path: ``./ansible/jenkins/``
+
+Before running playbook please changes your ``hosts`` according to your ``instance tag``.
+```
+- hosts: <instance_tag_name>
+eg:
+- hosts: tag_Name_JenkinsNode
+```
+Run the ansible playbook to install docker swarm.
+```
+ansible-playbook install-jenkins.yml
+```
+
